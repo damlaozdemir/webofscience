@@ -1,0 +1,168 @@
+{{extend 'layout.html'}}
+{{import itertools}}
+{{from gluon.serializers import json}}
+
+<font color="blue">Results for {{=keyword}}:</font> ({{=matches}} matches found!)<br>
+<h3><b>Author Information</b></h3>
+<ul id ="list">
+  <li id ="name"><b >Name: </b>{{=authorname[1:-1]}}</li>
+  <li id = "adress"><b>Address: </b>
+  {{for article in articles:}}
+
+    {{for author in article['authors']:}}
+
+        {{if author in authorname:}}
+          {{index=article['authors'].index(author)}}
+        {{else:
+          continue}}
+    {{pass}}
+    {{authoraddress = None}}
+    {{if 'revisedAddress' in article :}}
+      {{if len(article['revisedAddress'])>= index+1:}}
+        {{authoraddress =article['revisedAddress'][index][4:-4] }}
+        {{=authoraddress}}
+        {{break}}
+      {{else:}}
+        {{continue}}
+    {{else:}}
+        {{for address in article['address']:}}
+
+          {{authoraddress=address[5:-2]}}
+          {{=authoraddress}}
+        {{pass}}
+    {{pass}}
+  {{pass}}
+  </li>
+  
+</ul>
+<!--Publications Table-->
+  
+    <div class="table-responsive" style="overflow:scroll" >
+      <table class="table table-bordered ">
+        <tbody>
+          <tr>
+            <th scope="row">Years</th>
+              {{for key in mydict:}}
+              <td>{{=key}}<a></td>
+              {{pass}}
+          </tr>
+          
+          <tr>
+
+            <th scope="row">Publications</th>
+            {{for key in mydict:}}
+            
+            <td>{{=mydict[key]}}</td>
+            {{pass}}
+
+
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  
+  <!--End of Publications Table-->
+<hr>
+<h3><b>Articles</b></h3>
+  {{uniquekeywords = []}}
+  {{for article in articles:}}
+<div id="page-wrapper">
+
+      <div class="row">
+            <div class="col-lg-12" >
+
+              <ul id="list">
+                <li>
+                <b>{{=article['title'][0].upper()}}</b>
+                </li>
+
+                <li>
+                  <b>Publish Date:</b> {{=article['published'][0]}}
+                </li>
+                <li>
+                  <b>Journal:</b> {{=article['journal'][0]}}
+                </li>
+                <li>
+                  <b>DOI: </b>
+                  {{if 'DOI' in article :}}
+                  {{url = article['DOI'][0].replace('/', '%2')}}
+                  <a href="http://doi.org/{{=article['DOI'][0]}}" target="_blank">{{=article['DOI'][0]}}</a>
+                  {{else:}}
+                  -
+                  {{pass}}
+                </li>
+                <li>
+                <b>Research Areas:</b> {{=article['researchareas'][0]}}
+                </li>
+                <li>
+                <!--<b>Keywords: </b>
+                {{if 'keywords' in article :}}
+                  {{for keyword in article['keywords']:}}
+                      {{=keyword}},
+                  {{pass}}
+                {{else:}}
+                    -
+                {{pass}}
+                </li>
+                <li>
+                <b>Keywords Plus: </b>
+                {{if 'keywordsplus' in article :}}
+                  {{for keywordplus in article['keywordsplus']:}}
+                      {{=keywordplus.lower()}},
+                  {{pass}}
+                {{else:}}
+                    -
+                {{pass}}
+                </li>-->
+                <li>
+                <b>Keywords: </b>
+                {{keywords = []}}
+                {{if 'keywords' in article :}}
+                  {{for keyword in article['keywords']:}}
+                      {{keywords.append(keyword.lower())}}
+                  {{pass}}
+                
+                {{pass}}
+                
+                
+                {{keywordsplus = []}}
+                {{if 'keywordsplus' in article :}}
+                  {{for keywordplus in article['keywordsplus']:}}
+                      {{keywordsplus.append(keywordplus.lower())}}
+                  {{pass}}
+                
+                {{pass}}
+                {{totalkeywords = itertools.chain(keywords, keywordsplus)}}
+                {{for keywords in totalkeywords:}}
+                    {{=keywords}},
+                    {{uniquekeywords.append(keywords)}}
+                {{pass}}
+                </li>
+                <li>
+                <b>Authors:</b>
+                {{for author in article['authors']:}}
+                {{=author}}
+                    {{if author in authorname:}}
+                      {{index=article['authors'].index(author)}}
+                    {{else:
+                      continue}}
+                {{pass}}
+                </li>
+
+
+              </ul>
+            </div>
+      </div>
+</div>
+{{pass}}
+{{x = json(set(uniquekeywords))}}
+
+
+
+<script type="text/javascript">
+var x = {{=XML(x)}}
+
+</script>
+<script src="{{=URL('static','/js/authorgraph.js')}}" type="text/javascript"></script>
+<!--<script src="{{=URL('static','/js/draw_graph2.js')}}" type="text/javascript"></script>

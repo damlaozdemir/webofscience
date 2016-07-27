@@ -1,0 +1,834 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> name 'json' is not defined"
+p3
+sS'layer'
+p4
+S'/home/damla/web2py/applications/webofscience/views/default/index.html'
+p5
+sS'code'
+p6
+S'response.write(\'<!DOCTYPE html>\\n<html lang="en">\\n\\t<head>\\n\\t\\t<meta http-equiv="content-type" content="text/html; charset=UTF-8">\\n\\t\\t<meta charset="utf-8">\\n\\t\\t<title>Web Of Science</title>\\n\\t\\t<meta name="generator" content="Bootply" />\\n\\t\\t<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'/css/bootstrap.min.css\'))\nresponse.write(\'" />\\n\\t\\t<!--[if lt IE 9]>\\n\\t\\t\\t<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>\\n\\t\\t<![endif]-->\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'/css/styles.css\'))\nresponse.write(\'"  />\\n\\t\\t<script type="text/javascript" src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/json2.min.js\'))\nresponse.write(\'"></script>\\n\\t\\t<script type="text/javascript" src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/AC_OETags.min.js\'))\nresponse.write(\'"></script>\\n\\t\\t<script type="text/javascript" src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/cytoscapeweb.min.js\'))\nresponse.write(\'"></script>\\n\\t\\t<script src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/jquery.min.js\'))\nresponse.write(\'" type="text/javascript"></script>\\n\\t\\t<script src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/bootstrap.min.js\'))\nresponse.write(\'" type="text/javascript"></script>\\n\\n    <!--Auto Complete-->\\n    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">\\n  \\n  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>\\n  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>\\n\\t\\t<!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>-->\\n        <script src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/scripts.js\'))\nresponse.write(\'" type="text/javascript"></script>\\n\\t\\t  <script>\\n  \\n  $(function() {\\n    var availableTags = \', escape=False)\nresponse.write(XML(keywordcomplete))\nresponse.write(\'\\n    \\n    $( "#textinput" ).autocomplete({\\n      \\n      source: function(request, response) {\\n        var filteredArray = $.map(availableTags, function(item) {\\n      \\n          if(item.indexOf(request.term) == 0){\\n            return item;\\n              }\\n              else{\\n                  return null;\\n              }\\n          });\\n          response(filteredArray);\\n      }\\n      \\n      \\n    });\\n  });\\n  </script>\\n\\t\\t<!--graph content-->\\n\\n\\n\\t\\t\\n        <style>\\n            * { margin: 0; padding: 0; font-family: Helvetica, Arial, Verdana, sans-serif; }\\n            html, body { height: 100%; width: 100%; padding: 0; margin: 0; background-color: #f0f0f0; }\\n            body { line-height: 1.5; color: #000000; font-size: 14px; }\\n            /* The Cytoscape Web container must have its dimensions set. */\\n            #cytoscapeweb { width: 100%; height: 80%; }\\n            #note { width: 100%; text-align: center; padding-top: 1em; }\\n            .link { text-decoration: underline; color: #0b94b1; cursor: pointer; }\\n        </style>\\n\\t\\t<!--endof graph content-->\\n\\t</head>\\n\\t<body>\\n<!-- begin template -->\\n<div class="navbar navbar-custom navbar-fixed-top">\\n <div class="navbar-header"><a class="navbar-brand" href="/webofscience/default/index">WEB OF SCIENCE</a>\\n      \\n    </div>\\n    <div class="navbar-collapse collapse">\\n      \\n      <form class="navbar-form" id ="lol" >\\n        <div class="form-group" style="display:inline;">\\n          <div class="input-group">\\n            <div class="input-group-btn">\\n              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>\\n              <ul class="dropdown-menu">\\n                <li><a href="#">Category 1</a></li>\\n                \\n              </ul>\\n            </div>\\n            <input type="text" class="form-control" id="textinput"placeholder="Enter a Keyword" name="inputkeyword" >\\n            \\n            <button class="btn btn-default" type="submit"  method="post"><span class="glyphicon glyphicon-search"></span> </button>\\n          </div>\\n        </div>\\n      </form>\\n    </div>\\n</div>\\n\\n<div id="map-canvas">\\n\\t<embed src="\', escape=False)\nresponse.write(URL(\'static\',\'/swf/CytoscapeWeb.swf\'))\nresponse.write(\'" width="100%" height="100%" align="middle" id="cytoscapeWeb1" quality="high" bgcolor="#ffffff" name="cytoscapeWeb1" allowscriptaccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" flashvars="id=cytoscapeWeb1" type="application/x-shockwave-flash">\\n</div>\\n<div class="container-fluid" id="main">\\n  <div class="row">\\n  \\t<div class="col-xs-8" id="left">\\n      \', escape=False)\nresponse.write(\'\\n\', escape=False)\nif keyword:\n    response.write(\'\\n\', escape=False)\n    import math\n    response.write(\'\\n<div id= "pageStuff">\\n<div class="panel panel-default">\\n  <div class="panel-heading"><p>Results for \\\' <b id="keyword">\', escape=False)\n    response.write(keyword)\n    response.write("</b> \': (", escape=False)\n    response.write(length)\n    response.write(\' matches found!)</p></div>\\n</div>\\n<hr>\\n<div class="table-responsive" >\\n  <table class="table table-bordered table-hover">\\n    <thead>\\n      <tr>\\n        <th>#</th>\\n        <th>Author</th>\\n        <th>Number of Publications</th>\\n\\n      </tr>\\n    </thead>\\n    <tbody id="myTable">\\n      \', escape=False)\n    i=0\n    response.write(\'\\n      \\n      \', escape=False)\n    while(i < len(facetList[0])) and (facetoffset <= rows):\n        response.write(\'\\n      <tr class="success">\\n        \\n        <td>\', escape=False)\n        response.write(facetoffset+1)\n        response.write(\'</td>\\n        \', escape=False)\n        facetoffset = facetoffset+1\n        response.write(\'\\n        \\n        <td id="author" ><a href="/webofscience/default/author/\', escape=False)\n        response.write(facetList[0][i])\n        response.write(\'/">\', escape=False)\n        response.write(facetList[0][i])\n        response.write(\'</a>\\n          \\n          </td>\\n        <td id="publications">\', escape=False)\n        response.write(facetList[1][i])\n        response.write(\'</td>\\n        \', escape=False)\n        i=i+1\n        response.write(\'\\n      </tr>\\n      \', escape=False)\n        pass\n    response.write(\'\\n    </tbody>\\n  </table>\\n</div>\\n\', escape=False)\n    pass\nresponse.write(\'\\n</div>\\n<!-- Paginator -->\\n<nav>\\n  <ul class="pagination">\\n    <li class="page-item disabled">\\n      <a class="page-link" href="#" aria-label="Previous">\\n        <span aria-hidden="true">&laquo;</span>\\n        <span class="sr-only">Previous</span>\\n      </a>\\n    </li>\\n    \\n    \', escape=False)\nfor i in range(5):\n    response.write(\'\\n    <li class="page-item"><a class="page-link" href="/webofscience?page=\', escape=False)\n    response.write(i+1)\n    response.write(\'">\', escape=False)\n    response.write(i+1)\n    response.write(\'</a></li>\\n    \\n    \', escape=False)\n    pass\nresponse.write(\'\\n\\n    <li class="page-item">\\n      <a class="page-link" href="/webofscience?page=\', escape=False)\nresponse.write(i+1)\nresponse.write(\'" aria-label="Next">\\n        <span aria-hidden="true">&raquo;</span>\\n        <span class="sr-only">Next</span>\\n      </a>\\n    </li>\\n  </ul>\\n</nav>\\n<!-- End of Paginator -->\\n<!--<div class="pagination">\\n        <ul class="pager" id="myPager"></ul>\\n      </div>-->\\n<script type="text/javascript">\\n\', escape=False)\npage = json(page)\nresponse.write(\'\\nconsole.log(page)\\nvar numPages = Math.ceil(40/20);\\nvar curr = 0;\\n    while(numPages > curr && (settings.hidePageNumbers==false) && curr<5){\\n        $(\\\'<li><a href="#" class="page_link">\\\'+(curr+1)+\\\'</a></li>\\\').appendTo(pagination);\\n        curr++;\\n    }\\n$(\\\'.pagination\\\').find(\\\'li\\\').click(function(){\\n  //$(\\\'.pagination\\\').children().removeClass("active");\\n  $(this).addClass("active");\\n    \\n});\\n</script>\\n<script src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/draw_graph.js\'))\nresponse.write(\'" type="text/javascript"></script>\\n\\n<!--<script src="\', escape=False)\nresponse.write(URL(\'static\',\'/js/paginator.js\'))\nresponse.write(\'" type="text/javascript"></script>-->\', escape=False)\nresponse.write(\'\\n\\t\\t</div>\\n  </div>\\n</div>\\n<!-- end template -->\\n\\n\\t<!-- script references -->\\n\\n\\t</body>\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'args'
+p24
+S'("name \'json\' is not defined",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.NameError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.NameError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"name 'json' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\xa3[\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-e59fc427-2517-4976-af84-b591e6e07eee<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_webofscience</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_welcome</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-a3ce159b-03eb-49a1-b9f1-2d07f9a583f1<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.1.1065602752.1463081039; session_id_welcome=127.0.0.1-a3ce159b-03eb-49a1-b9f1-2d07f9a583f1; session_id_admin=127.0.0.1-e59fc427-2517-4976-af84-b591e6e07eee; session_id_webofscience=127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/webofscience?page=3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div>page=5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>50344</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>damla</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/damla/web2py/applications/webofscience/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7fedbbb283b0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;damla&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/damla/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.1.1065602752.1463081039; session_id_welcome=127.0.0.1-a3ce159b-03eb-49a1-b9f1-2d07f9a583f1; session_id_admin=127.0.0.1-e59fc427-2517-4976-af84-b591e6e07eee; session_id_webofscience=127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>http://127.0.0.1:8000/webofscience?page=3</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>damla</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div>page=5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>50344</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/webofscience?page=5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>damla</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.5-stable+timestamp.2016.04.14.03.26.16</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fedc021f1e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7fedbbb53a78&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7fed820aa450&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fedc021f1e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x7fedbbb53a78&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;socket._fileobject object at 0x7fed820aa450&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py/applications/webofscience/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>index</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/damla/web2py/applications/webofscience/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cmd_options</td><td style="vertical-align:top;">:</td><td><div>&lt;Values at 0x7fedbbb283b0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;with_scheduler&#x27;: False, &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;damla&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;port&#x27;: 8000, &#x27;print_errors&#x27;: False, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/damla/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;profiler_dir&#x27;: None, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;interfaces&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;gae&#x27;: None, &#x27;password&#x27;: &#x27;******&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>damla</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.5-stable+timestamp.2016.04.14.03.26.16</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 7, 22, 22, 50, 30, 31096)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 7, 22, 19, 50, 30, 31112)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7fed820b16d0&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/damla/web2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7fed81a14930, file "/...s/webofscience/views/default/index.html", line 1>'
+p69
+ssS'lnum'
+p70
+I227
+sS'lines'
+p71
+(dp72
+I224
+S'            ccode = code'
+p73
+sI225
+S'        else:'
+p74
+sI226
+S'            ccode = compile2(code, layer)'
+p75
+sI227
+S'        exec ccode in environment'
+p76
+sI228
+S'    except HTTP:'
+p77
+sI229
+S'        raise'
+p78
+sI230
+S'    except RestrictedError:'
+p79
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p80
+sI222
+S'    try:'
+p81
+sI223
+S'        if isinstance(code, types.CodeType):'
+p82
+ssS'call'
+p83
+S'(code=\'response.write(\\\'<!DOCTYPE html>\\\\n<html lang="en"...ences -->\\\\n\\\\n\\\\t</body>\\\\n</html>\\\\n\\\', escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AppConfig\': <function AppConfig>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, ...}, layer=\'/home/damla/web2py/applications/webofscience/views/default/index.html\')'
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/damla/web2py/applications/webofscience/views/default/index.html'
+p88
+sg64
+(dp89
+S'ul'
+p90
+S'undefined'
+p91
+ssg70
+I61
+sg71
+(dp92
+I64
+S'response.write(\'" type="text/javascript"></script>\\n\\n<!--<script src="\', escape=False)'
+p93
+sI65
+S"response.write(URL('static','/js/paginator.js'))"
+p94
+sI66
+S'response.write(\'" type="text/javascript"></script>-->\', escape=False)'
+p95
+sI67
+S"response.write('\\n\\t\\t</div>\\n  </div>\\n</div>\\n<!-- end template -->\\n\\n\\t<!-- script references -->\\n\\n\\t</body>\\n</html>\\n', escape=False)"
+p96
+sI52
+S'    response.write(\'\\n    <li class="page-item"><a class="page-link" href="/webofscience?page=\', escape=False)'
+p97
+sI53
+S'    response.write(i+1)'
+p98
+sI54
+S'    response.write(\'">\', escape=False)'
+p99
+sI55
+S'    response.write(i+1)'
+p100
+sI56
+S"    response.write('</a></li>\\n    \\n    ', escape=False)"
+p101
+sI57
+S'    pass'
+p102
+sI58
+S'response.write(\'\\n\\n    <li class="page-item">\\n      <a class="page-link" href="/webofscience?page=\', escape=False)'
+p103
+sI59
+S'response.write(i+1)'
+p104
+sI60
+S'response.write(\'" aria-label="Next">\\n        <span aria-hidden="true">&raquo;</span>\\n        <span class="sr-only">Next</span>\\n      </a>\\n    </li>\\n  </ul>\\n</nav>\\n<!-- End of Paginator -->\\n<!--<div class="pagination">\\n        <ul class="pager" id="myPager"></ul>\\n      </div>-->\\n<script type="text/javascript">\\n\', escape=False)'
+p105
+sI61
+S'page = json(page)'
+p106
+sI62
+S'response.write(\'\\nconsole.log(page)\\nvar numPages = Math.ceil(40/20);\\nvar curr = 0;\\n    while(numPages > curr && (settings.hidePageNumbers==false) && curr<5){\\n        $(\\\'<li><a href="#" class="page_link">\\\'+(curr+1)+\\\'</a></li>\\\').appendTo(pagination);\\n        curr++;\\n    }\\n$(\\\'.pagination\\\').find(\\\'li\\\').click(function(){\\n  //$(\\\'.pagination\\\').children().removeClass("active");\\n  $(this).addClass("active");\\n    \\n});\\n</script>\\n<script src="\', escape=False)'
+p107
+sI63
+S"response.write(URL('static','/js/draw_graph.js'))"
+p108
+ssg83
+S'()'
+p109
+sg85
+S'<module>'
+p110
+sasS'pyver'
+p111
+S'Python 2.7.6: /usr/bin/python (prefix: /usr)'
+p112
+sS'session'
+p113
+g57
+(S's\x9b\x00\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">keyword</td><td style="vertical-align:top;">:</td><td><div>*</div></td></tr></table></div>'
+tRp114
+sS'etype'
+p115
+S"<type 'exceptions.NameError'>"
+p116
+sS'date'
+p117
+S'Fri Jul 22 22:50:30 2016'
+p118
+sS'response'
+p119
+g57
+(S's\x01@\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7fed82099420&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_webofscience</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>*</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Anasayfa</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/webofscience/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Sitelerim</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Bu Uygulama</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/webofscience</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Denet\xc3\xa7i</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/controllers/default.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>G\xc3\xb6r\xc3\xbcn\xc3\xbcm</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/views/default/index.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>DB Modeli</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Model Men\xc3\xbc</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc5\x9eablon</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Stil \xc5\x9eablonu</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/webofscience/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Veritaban\xc4\xb1</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/webofscience/appadmin/index</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Hatalar</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/errors/webofscience</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Hakk\xc4\xb1nda</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/about/webofscience</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>\xc4\xb0ndir</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Destek</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Tan\xc4\xb1t\xc4\xb1m</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>H\xc4\xb1zl\xc4\xb1 \xc3\x96rnekler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>SSS</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Videolar</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x9ccretsiz uygulamalar</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Eklentiler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Tarifeler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Kitap</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x96nz\xc3\xb6s</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Giri\xc5\x9f</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>G\xc3\xb6z gezdir</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x87ekirdek</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>G\xc3\xb6r\xc3\xbcn\xc3\xbcmler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Veritaban\xc4\xb1</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Bi\xc3\xa7imler ve Do\xc4\x9frulay\xc4\xb1c\xc4\xb1lar</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>E-posta ve k\xc4\xb1sa mesaj (SMS)</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Eri\xc5\x9fim Denetimi</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Hizmetler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Ajax Tarifleri</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Bile\xc5\x9fenler ve Eklentiler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Yay\xc4\xb1nlama tarifleri</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Di\xc4\x9fer Tarifler</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Helping web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Topluluk</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Gruplar</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Canl\xc4\xb1 Sohbet</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/index/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>&lt;open file &#x27;/home/damla/web2py/applications/webofscience/sessions/029/08c/127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff&#x27;, mode &#x27;rb+&#x27; at 0x7fed820950c0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/damla/web2py/applications/webofscience/sessions/127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>0b07ad429f0419b1006d53ff37d04431</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>127.0.0.1-a92a1d77-92e8-4740-a601-377b170954ff</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_locked</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Webofscience</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>default/index.html</div></td></tr></table></div>'
+tRp120
+sS'locals'
+p121
+(dp122
+S'Service'
+p123
+S"<class 'gluon.tools.Service'>"
+p124
+sS'OBJECT'
+p125
+S"<class 'gluon.html.OBJECT'>"
+p126
+sS'SQLDB'
+p127
+S"<class 'pydal.base.DAL'>"
+p128
+sg113
+S"<Storage {'keyword': '*'}>"
+p129
+sS'LINK'
+p130
+S"<class 'gluon.html.LINK'>"
+p131
+sS'BR'
+p132
+S"<class 'gluon.html.BR'>"
+p133
+sS'local_import'
+p134
+S'<function <lambda>>'
+p135
+sS'OPTGROUP'
+p136
+S"<class 'gluon.html.OPTGROUP'>"
+p137
+sS'__package__'
+p138
+S'None'
+p139
+sS'PRE'
+p140
+S"<class 'gluon.html.PRE'>"
+p141
+sS'IS_INT_IN_RANGE'
+p142
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p143
+sS'IS_LOWER'
+p144
+S"<class 'gluon.validators.IS_LOWER'>"
+p145
+sS'IS_STRONG'
+p146
+S"<class 'gluon.validators.IS_STRONG'>"
+p147
+sS'cache'
+p148
+S'<gluon.cache.Cache object>'
+p149
+sS'IS_IN_DB'
+p150
+S"<class 'gluon.validators.IS_IN_DB'>"
+p151
+sS'TAG'
+p152
+S'<gluon.html.__TAG__ object>'
+p153
+sS'SQLField'
+p154
+S"<class 'pydal.objects.Field'>"
+p155
+sS'mail'
+p156
+S'<gluon.tools.Mail object>'
+p157
+sS'BODY'
+p158
+S"<class 'gluon.html.BODY'>"
+p159
+sS'IS_DATE_IN_RANGE'
+p160
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p161
+sS'IFRAME'
+p162
+S"<class 'gluon.html.IFRAME'>"
+p163
+sS'articles'
+p164
+S'[{\'DOI\': [\'10.1002/wcm.2369\'], \'_version_\': 1537856504916344834, \'abstract\': [\'In wireless sensor networks, data aggregation pr...ivacy. Copyright (c) 2013 John Wiley & Sons, Ltd.\'], \'address\': [\'[ 1 ] Gazi Univ, Dept Comp Engn, TR-06570 Ankara, \', \'[ 2 ] Univ Alabama, Dept Comp Sci, Tuscaloosa, AL 35487 USA\'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Ozdemir, S\', \'Peng, M\', \'Xiao, Y\'], \'id\': \'f19c6979-f16e-41f3-8dc6-367602e874f7\', \'journal\': [\'WIRELESS COMMUNICATIONS & MOBILE COMPUTING\'], \'keywords\': [\'polynomial regression\', \'privacy\', \'data aggregation\', \'wireless sensor networks\'], \'published\': [\'MAR 2015\'], ...}, {\'DOI\': [\'10.1002/sec.374\'], \'_version_\': 1537856505208897537, \'abstract\': [\'In this work, we will illustrate our attempt to ...stbed. Copyright (c) 2011 John Wiley & Sons, Ltd.\'], \'address\': [\'[ 1 ] Univ Alabama, Dept Comp Sci, Tuscaloosa, AL 35487 USA\', \'[ 2 ] Gazi Univ, Dept Comp Engn, TR-06570 Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'1\', \']\', \'[\', \'1\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Xiao, Y\', \'Yue, SQ\', \'Fu, B\', \'Ozdemir, S\'], \'id\': \'ee098541-95a9-49eb-be7f-3f15040e8337\', \'journal\': [\'SECURITY AND COMMUNICATION NETWORKS\'], \'keywords\': [\'logging\', \'global view\', \'accountability\', \'flow-net\', \'network\', \'distributed system\', \'Emulab\'], \'keywordsplus\': [\'WIRELESS SENSOR NETWORKS\', \'FLOW-NET\', \'MANAGEMENT\'], ...}, {\'DOI\': [\'10.1007/s00500-013-1208-2\'], \'_version_\': 1537856505238257665, \'abstract\': [\'Coupling sensors in a sensor network with mobili...rther modifications in their internal mechanisms.\'], \'address\': [\'[ 1 ] Univ Baghdad, Dept Comp Sci, Baghdad, Iraq\', \'[ 2 ] Gazi Univ, Dept Comp Engn, Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Attea, BA\', \'Khalil, EA\', \'Ozdemir, S\'], \'id\': \'6286b4f2-e428-45b3-b19b-aa67e3fcc224\', \'journal\': [\'SOFT COMPUTING\'], \'keywords\': [\'Coverage\', \'Energy conservation\', \'Evolutionary algorithms\', \'Mobile sensor networks\', \'MOO\', \'Non-dominated solution\', \'Probabilistic sensing model\', \'Swarm intelligence\'], \'keywordsplus\': [\'DEPLOYMENT\', \'OPTIMIZATION\'], ...}, {\'_version_\': 1537856505430147074, \'abstract\': [\'Tracking a target as it moves in monitored area ... target tracking algorithms in terms of security.\'], \'address\': [\'[ 1 ] Univ Bihac, Tech Fac, Bihac, Bosnia & Herceg\', \'[ 2 ] Gazi Univ, Fac Engn, Dept Comp Engn, Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Oracevic, A\', \'Ozdemir, S\'], \'id\': \'431b1bcd-c0a1-40c9-b390-6c5916c30dfc\', \'journal\': [\'2014 WORLD CONGRESS ON COMPUTER APPLICATIONS AND INFORMATION SYSTEMS (WCCAIS)\'], \'keywords\': [\'target tracking algorithms\', \'classification of target tracking algorithms\', \'survey\', \'wireless sensor networks\', \'security\'], \'published\': [\'2014\'], \'researchareas\': [\'Computer Science\\n\'], ...}, {\'DOI\': [\'10.1109/DCOSS.2014.56\'], \'_version_\': 1537856505445875715, \'abstract\': [\'In recent years, wireless sensor networks offer ...evaluated in a Java based simulation environment.\'], \'address\': [\'[ 1 ] Gazi Univ, Fac Engn, Dept Comp Engn, Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'1\', \']\', \'[\', \'1\', \']\'], \'authors\': [\'Akbas, S\', \'Efe, MA\', \'Ozdemir, S\'], \'id\': \'0f1467bc-d80d-4d28-8897-7c2d5e7af439\', \'journal\': [\'2014 IEEE INTERNATIONAL CONFERENCE ON DISTRIBUTED COMPUTING IN SENSOR SYSTEMS (IEEE DCOSS 2014)\'], \'keywords\': [\'wireless sensor networks\', \'passive infrared sensor\', \'target detection\', \'sensor deployment\', \'sensor coverage\'], \'keywordsplus\': [\'PYROELECTRIC INFRARED-SENSOR\', \'HUMAN TRACKING\', \'WIRELESS\', \'COVERAGE\'], ...}, {\'DOI\': [\'10.1007/s00500-012-0970-x\'], \'_version_\': 1537856505700679680, \'abstract\': [\'A wireless sensor network (WSN) generally consis...ient and reliable behavior over other approaches.\'], \'address\': [\'[ 1 ] Gazi Univ, Dept Comp Engn, Ankara, \', \'[ 2 ] Univ Baghdad, Dept Comp Sci, Baghdad, Iraq\', \'[ 3 ] Gazi Univ, Dept Comp Sci, Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\', \'[\', \'3\', \']\'], \'authors\': [\'Ozdemir, S\', \'Attea, BA\', \'Khalil, OA\'], \'id\': \'a79b53fe-1a9e-4f07-b568-d8951a4395fb\', \'journal\': [\'SOFT COMPUTING\'], \'keywords\': [\'Coverage preservation\', \'Clustering\', \'Energy conservation\', \'Evolutionary algorithms\', \'Multi-objective optimization\', \'Wireless sensor networks\'], \'published\': [\'SEP 2013\'], ...}, {\'DOI\': [\'10.1002/sec.638\'], \'_version_\': 1537856505718505473, \'abstract\': [\'<title content-type="main">ABSTRACT\\n\', \'\\n\', \'To produce ciphertexts, two modes of encryption ...annel. Copyright (c) 2012 John Wiley & Sons, Ltd.\'], \'address\': [\'[ 1 ] Univ Alabama, Dept Comp Sci, Tuscaloosa, AL 35487 USA\', \'[ 2 ] Gazi Univ Maltepe, Dept Comp Engn, TR-06570 Ankara, \', \'[ 3 ] Univ Western Macedonia, Dept Comp & Telecommun Engn, Macedonia, Greece\', \'[ 4 ] Intelligent Automat Inc, Rockville, MD 20855 USA\'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'1\', \']\', \'[\', \'2\', \']\', \'[\', \'3\', \']\', \'[\', \'4\', \']\'], \'authors\': [\'Liang, XN\', \'Xiao, Y\', \'Ozdemir, S\', \'Vasilakos, AV\', \'Deng, HM\'], \'id\': \'789951ef-43a3-4b62-8a30-20289bbcee1f\', \'journal\': [\'SECURITY AND COMMUNICATION NETWORKS\'], \'keywords\': [\'cipher feedback mode\', \'flow control\', \'sliding-window\', \'error channel\'], \'keywordsplus\': [\'WIRELESS SENSOR NETWORKS\'], ...}, {\'DOI\': [\'10.1002/sec.604\'], \'_version_\': 1537856505818120192, \'abstract\': [\'Data aggregation protocols are essential for wir...twork. Copyright (c) 2012 John Wiley & Sons, Ltd.\'], \'address\': [\'[ 1 ] Gazi Univ, Dept Comp Engn, TR-06570 Ankara, \', \'[ 2 ] Univ Alabama, Dept Comp Sci, Tuscaloosa, AL 35487 USA\'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Ozdemir, S\', \'Xiao, Y\'], \'id\': \'802098c2-11ec-439a-978a-e181fd5f8e9f\', \'journal\': [\'SECURITY AND COMMUNICATION NETWORKS\'], \'keywords\': [\'fault-tolerant data aggregation\', \'outlier detection\', \'wireless sensor networks\'], \'keywordsplus\': [\'ALGORITHMS\'], ...}, {\'DOI\': [\'10.1049/iet-cdt.2011.0080\'], \'_version_\': 1537856506253279234, \'abstract\': [\'Network-on-chip (NoC) is an alternative approach...s with negligible area and link length overheads.\'], \'address\': [\'[ 1 ] Ankara Univ, Dept Comp Engn, TR-06100 Ankara, \', \'[ 2 ] Gazi Univ, Dept Comp Engn, Ankara, \'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'1\', \']\', \'[\', \'2\', \']\'], \'authors\': [\'Tosun, S\', \'Ar, Y\', \'Ozdemir, S\'], \'id\': \'cde9a418-5f3b-4803-a3fe-9f1d6f156cc7\', \'journal\': [\'IET COMPUTERS AND DIGITAL TECHNIQUES\'], \'keywordsplus\': [\'INTERCONNECTION NETWORKS\'], \'published\': [\'SEP 2012\'], ...}, {\'DOI\': [\'10.1016/j.jpdc.2011.04.011\'], \'_version_\': 1537856506674806785, \'abstract\': [\'Network coverage is an important Quality of Serv...rics. (C) 2011 Elsevier Inc. All rights reserved.\'], \'address\': [\'[ 1 ] Univ Alabama, Dept Comp Sci, Tuscaloosa, AL 35487 USA\', \'[ 2 ] Virginia State Univ, Dept Math & CS, Petersburg, VA 23806 USA\', \'[ 3 ] Gazi Univ, Dept Comp Engn, TR-06570 Ankara, \', \'[ 4 ] Univ Western Macedonia, Dept Comp & Telecom Engn, Kozani, Greece\', \'[ 5 ] Temple Univ, Dept Comp & Informat Sci, Philadelphia, PA 19122 USA\'], \'addressnumbers\': [\'[\', \'1\', \']\', \'[\', \'2\', \']\', \'[\', \'1\', \']\', \'[\', \'3\', \']\', \'[\', \'4\', \']\', \'[\', \'5\', \']\'], \'authors\': [\'Peng, M\', \'Chen, H\', \'Xiao, Y\', \'Ozdemir, S\', \'Vasilakos, AV\', \'Wu, J\'], \'id\': \'c4d76a44-2c73-4f47-9663-efe0bfd6725a\', \'journal\': [\'JOURNAL OF PARALLEL AND DISTRIBUTED COMPUTING\'], \'keywords\': [\'Coverage\', \'Sensor network\', \'Distribution\'], \'keywordsplus\': [\'CROSS-LAYER DESIGN\', \'ENERGY-CONSERVATION\', \'ROUTING PROTOCOL\', \'APPROXIMATION ALGORITHM\', \'WIRELESS NETWORKS\', \'MAXIMUM LIFETIME\', \'TARGET DETECTION\', \'KALMAN FILTER\', \'DATA QUALITY\', \'MOBILE\'], ...}]'
+p165
+sS'URL'
+p166
+S'<function URL>'
+p167
+sS'__file__'
+p168
+S"'/home/damla/web2py/applications/webofscience/views/default/index.html'"
+p169
+sS'db'
+p170
+S'<DAL uri="sqlite://storage.sqlite">'
+p171
+sS'auth'
+p172
+S'<gluon.tools.Auth object>'
+p173
+sS'P'
+S"<class 'gluon.html.P'>"
+p174
+sS'TFOOT'
+p175
+S"<class 'gluon.html.TFOOT'>"
+p176
+sS'XHTML'
+p177
+S"<class 'gluon.html.XHTML'>"
+p178
+sS'keywordcomplete'
+p179
+S'u\'["coverage preservation", "routing protocol", ...curity", "maximum lifetime", "data aggregation"]\''
+p180
+sS'ON'
+p181
+S'True'
+p182
+sS'OL'
+p183
+S"<class 'gluon.html.OL'>"
+p184
+sS'IS_JSON'
+p185
+S"<class 'gluon.validators.IS_JSON'>"
+p186
+sS'TEXTAREA'
+p187
+S"<class 'gluon.html.TEXTAREA'>"
+p188
+sS'MENU'
+p189
+S"<class 'gluon.html.MENU'>"
+p190
+sS'IS_IMAGE'
+p191
+S"<class 'gluon.validators.IS_IMAGE'>"
+p192
+sS'page'
+p193
+S'5'
+sS'EM'
+p194
+S"<class 'gluon.html.EM'>"
+p195
+sS'CODE'
+p196
+S"<class 'gluon.html.CODE'>"
+p197
+sS'HTTP'
+p198
+S"<class 'gluon.http.HTTP'>"
+p199
+sS'HR'
+p200
+S"<class 'gluon.html.HR'>"
+p201
+sS'IS_DATETIME'
+p202
+S"<class 'gluon.validators.IS_DATETIME'>"
+p203
+sS'STYLE'
+p204
+S"<class 'gluon.html.STYLE'>"
+p205
+sS'LABEL'
+p206
+S"<class 'gluon.html.LABEL'>"
+p207
+sS'CLEANUP'
+p208
+S"<class 'gluon.validators.CLEANUP'>"
+p209
+sS'plugins'
+p210
+S'<gluon.tools.PluginManager object>'
+p211
+sS'SELECT'
+p212
+S"<class 'gluon.html.SELECT'>"
+p213
+sS'CENTER'
+p214
+S"<class 'gluon.html.CENTER'>"
+p215
+sS'Auth'
+p216
+S"<class 'gluon.tools.Auth'>"
+p217
+sS'DEVELOPMENT_MENU'
+p218
+g182
+sS'__builtins__'
+p219
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p220
+sS'HTML'
+p221
+S"<class 'gluon.html.HTML'>"
+p222
+sS'facetoffset'
+p223
+S'100'
+p224
+sS'SQLFORM'
+p225
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p226
+sS'math'
+p227
+S"<module 'math' (built-in)>"
+p228
+sS'LOAD'
+p229
+S'<function LOAD>'
+p230
+sS'redirect'
+p231
+S'<function redirect>'
+p232
+sS'FIELDSET'
+p233
+S"<class 'gluon.html.FIELDSET'>"
+p234
+sS'IS_EQUAL_TO'
+p235
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p236
+sS'embed64'
+p237
+S'<function embed64>'
+p238
+sS'IS_LIST_OF'
+p239
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p240
+sS'INPUT'
+p241
+S"<class 'gluon.html.INPUT'>"
+p242
+sS'EMBED'
+p243
+S"<class 'gluon.html.EMBED'>"
+p244
+sS'_'
+S'<function _>'
+p245
+sS'myconf'
+p246
+S"{'forms': {'formstyle': 'bootstrap3_inline', 'se...': {'names': 'localhost:*, 127.0.0.1:*, *:*, *'}}"
+p247
+sS'H2'
+p248
+S"<class 'gluon.html.H2'>"
+p249
+sS'H3'
+p250
+S"<class 'gluon.html.H3'>"
+p251
+sS'AppConfig'
+p252
+S'<function AppConfig>'
+p253
+sS'H1'
+p254
+S"<class 'gluon.html.H1'>"
+p255
+sS'H6'
+p256
+S"<class 'gluon.html.H6'>"
+p257
+sS'H4'
+p258
+S"<class 'gluon.html.H4'>"
+p259
+sS'H5'
+p260
+S"<class 'gluon.html.H5'>"
+p261
+sS'UL'
+p262
+S"<class 'gluon.html.UL'>"
+p263
+sS'length'
+p264
+S'20'
+p265
+sS'IS_UPPER'
+p266
+S"<class 'gluon.validators.IS_UPPER'>"
+p267
+sS'xmlescape'
+p268
+S'<function xmlescape>'
+p269
+sS'IS_TIME'
+p270
+S"<class 'gluon.validators.IS_TIME'>"
+p271
+sS'OPTION'
+p272
+S"<class 'gluon.html.OPTION'>"
+p273
+sS'TITLE'
+p274
+S"<class 'gluon.html.TITLE'>"
+p275
+sS'CRYPT'
+p276
+S"<class 'gluon.validators.CRYPT'>"
+p277
+sS'IS_EMPTY_OR'
+p278
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p279
+sS'MARKMIN'
+p280
+S"<class 'gluon.html.MARKMIN'>"
+p281
+sS'__name__'
+p282
+S"'__restricted__'"
+p283
+sS'STRONG'
+p284
+S"<class 'gluon.html.STRONG'>"
+p285
+sS'COL'
+p286
+S"<class 'gluon.html.COL'>"
+p287
+sS'rows'
+p288
+S'100'
+p289
+sS'service'
+p290
+S'<gluon.tools.Service object>'
+p291
+sS'SCRIPT'
+p292
+S"<class 'gluon.html.SCRIPT'>"
+p293
+sS'TABLE'
+p294
+S"<class 'gluon.html.TABLE'>"
+p295
+sS'IS_IPV4'
+p296
+S"<class 'gluon.validators.IS_IPV4'>"
+p297
+sS'IS_LENGTH'
+p298
+S"<class 'gluon.validators.IS_LENGTH'>"
+p299
+sS'IS_IPV6'
+p300
+S"<class 'gluon.validators.IS_IPV6'>"
+p301
+sS'XML'
+p302
+S"<class 'gluon.html.XML'>"
+p303
+sS'B'
+S"<class 'gluon.html.B'>"
+p304
+sS'IMG'
+p305
+S"<class 'gluon.html.IMG'>"
+p306
+sS'SQLTABLE'
+p307
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p308
+sS'IS_MATCH'
+p309
+S"<class 'gluon.validators.IS_MATCH'>"
+p310
+sS'IS_ALPHANUMERIC'
+p311
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p312
+sS'SPAN'
+p313
+S"<class 'gluon.html.SPAN'>"
+p314
+sS'keyword'
+p315
+S"'*'"
+p316
+sS'IS_IPADDRESS'
+p317
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p318
+sS'IS_SLUG'
+p319
+S"<class 'gluon.validators.IS_SLUG'>"
+p320
+sS'BEAUTIFY'
+p321
+S"<class 'gluon.html.BEAUTIFY'>"
+p322
+sS'META'
+p323
+S"<class 'gluon.html.META'>"
+p324
+sS'BUTTON'
+p325
+S"<class 'gluon.html.BUTTON'>"
+p326
+sS'IS_DATE'
+p327
+S"<class 'gluon.validators.IS_DATE'>"
+p328
+sS'IS_EMAIL'
+p329
+S"<class 'gluon.validators.IS_EMAIL'>"
+p330
+sS'IS_NOT_EMPTY'
+p331
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p332
+sS'IS_FLOAT_IN_RANGE'
+p333
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p334
+sS'TBODY'
+p335
+S"<class 'gluon.html.TBODY'>"
+p336
+sS'CAT'
+p337
+S"<class 'gluon.html.CAT'>"
+p338
+sS'Field'
+p339
+S"<class 'pydal.objects.Field'>"
+p340
+sS'IS_LIST_OF_EMAILS'
+p341
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p342
+sS'DIV'
+p343
+S"<class 'gluon.html.DIV'>"
+p344
+sS'LEGEND'
+p345
+S"<class 'gluon.html.LEGEND'>"
+p346
+sS'COLGROUP'
+p347
+S"<class 'gluon.html.COLGROUP'>"
+p348
+sS'DAL'
+p349
+S"<class 'pydal.base.DAL'>"
+p350
+sS'ASSIGNJS'
+p351
+S'<function ASSIGNJS>'
+p352
+sS'TR'
+p353
+S"<class 'gluon.html.TR'>"
+p354
+sS'LI'
+p355
+S"<class 'gluon.html.LI'>"
+p356
+sS'facetList'
+p357
+S"[['Eksin, I', 'Erdogan, N', 'Erkmen, AM', 'Gungor, VC', 'Saraclar, M', 'Toroslu, IH', 'Barshan, B', 'Bicakci, K', 'Cam, U', 'Erciyes, K', 'Erkoc, S', 'Leblebicioglu, K', 'Sagiroglu, S', 'Say, ACC', 'Akar, N', 'Altinel, IK', 'Celik, M', 'Dereli, T', 'Erkmen, I', 'Ozdemir, S'], [33, 33, 33, 33, 33, 33, 32, 32, 32, 32, 32, 32, 32, 32, 31, 31, 31, 31, 31, 31]]"
+p358
+sS'TH'
+p359
+S"<class 'gluon.html.TH'>"
+p360
+sS'TD'
+p361
+S"<class 'gluon.html.TD'>"
+p362
+sS'PluginManager'
+p363
+S"<class 'gluon.tools.PluginManager'>"
+p364
+sS'IS_URL'
+p365
+S"<class 'gluon.validators.IS_URL'>"
+p366
+sS'A'
+S"<class 'gluon.html.A'>"
+p367
+sS'HEAD'
+p368
+S"<class 'gluon.html.HEAD'>"
+p369
+sS'IS_DATETIME_IN_RANGE'
+p370
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p371
+sS'FORM'
+p372
+S"<class 'gluon.html.FORM'>"
+p373
+sS'I'
+S"<class 'gluon.html.I'>"
+p374
+sS'IS_NOT_IN_DB'
+p375
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p376
+sg119
+S"<Storage {'body': <cStringIO.StringO object at 0...t 0x7fed820b2a28>, 'view': 'default/index.html'}>"
+p377
+sS'THEAD'
+p378
+S"<class 'gluon.html.THEAD'>"
+p379
+sS'ANY_OF'
+p380
+S"<class 'gluon.validators.ANY_OF'>"
+p381
+sS'IS_NULL_OR'
+p382
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p383
+sS'i'
+S'4'
+sg56
+S"<Storage {'_vars': <Storage {'page': '5'}>, 'fun...'/home/damla/web2py/applications/webofscience/'}>"
+p384
+sS'IS_EXPR'
+p385
+S"<class 'gluon.validators.IS_EXPR'>"
+p386
+sS'T'
+S'<gluon.languages.translator object>'
+p387
+sS'IS_IN_SET'
+p388
+S"<class 'gluon.validators.IS_IN_SET'>"
+p389
+sS'IS_UPLOAD_FILENAME'
+p390
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p391
+sS'TT'
+p392
+S"<class 'gluon.html.TT'>"
+p393
+sS'IS_DECIMAL_IN_RANGE'
+p394
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p395
+sssS'traceback'
+p396
+S'Traceback (most recent call last):\n  File "/home/damla/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/damla/web2py/applications/webofscience/views/default/index.html", line 61, in <module>\n    </ul>\nNameError: name \'json\' is not defined\n'
+p397
+s.

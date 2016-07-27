@@ -1,0 +1,385 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'response.write(\'<!DOCTYPE html>\\n<html lang="en">\\n\\t<head>\\n\\t\\t<meta http-equiv="content-type" content="text/html; charset=UTF-8">\\n\\t\\t<meta charset="utf-8">\\n\\t\\t<title>Web Of Science</title>\\n\\t\\t<meta name="generator" content="Bootply" />\\n\\t\\t<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'/css/bootstrap.min.css\'))\nresponse.write(\'" />\\n\\t\\t<!--[if lt IE 9]>\\n\\t\\t\\t<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>\\n\\t\\t<![endif]-->\\n\\t\\t<link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(\'static\',\'/css/styles.css\'))\nresponse.write(\'"  />\\n\\n\\t\\t<!--graph content-->\\n\\n\\n\\t\\t<script type="text/javascript">\\n            window.onload = function() {\\n                // id of Cytoscape Web container div\\n                var div_id = "cytoscapeweb";\\n\\n                // NOTE: - the attributes on nodes and edges\\n                //       - it also has directed edges, which will automatically display edge arrows\\n                var xml = \\\'\\\\\\n                <graphml>\\\\\\n                  <key id="label" for="all" attr.name="label" attr.type="string"/>\\\\\\n                  <key id="weight" for="node" attr.name="weight" attr.type="double"/>\\\\\\n                  <graph edgedefault="directed">\\\\\\n                    <node id="1">\\\\\\n                        <data key="label">A</data>\\\\\\n                        <data key="weight">2.0</data>\\\\\\n                    </node>\\\\\\n                    <node id="2">\\\\\\n                        <data key="label">B</data>\\\\\\n                        <data key="weight">1.5</data>\\\\\\n                    </node>\\\\\\n                    <node id="3">\\\\\\n                        <data key="label">C</data>\\\\\\n                        <data key="weight">1.0</data>\\\\\\n                    </node>\\\\\\n                    <edge source="1" target="2">\\\\\\n                        <data key="label">A to B</data>\\\\\\n                    </edge>\\\\\\n                    <edge source="1" target="3">\\\\\\n                        <data key="label">A to C</data>\\\\\\n                    </edge>\\\\\\n                  </graph>\\\\\\n                </graphml>\\\\\\n                \\\';\\n\\n                function rand_color() {\\n                    function rand_channel() {\\n                        return Math.round( Math.random() * 255 );\\n                    }\\n\\n                    function hex_string(num) {\\n                        var ret = num.toString(16);\\n\\n                        if (ret.length < 2) {\\n                            return "0" + ret;\\n                        } else {\\n                            return ret;\\n                        }\\n                    }\\n\\n                    var r = rand_channel();\\n                    var g = rand_channel();\\n                    var b = rand_channel();\\n\\n                    return "#" + hex_string(r) + hex_string(g) + hex_string(b);\\n                }\\n\\n                // visual style we will use\\n                var visual_style = {\\n                    global: {\\n                        backgroundColor: "#ABCFD6"\\n                    },\\n                    nodes: {\\n                        shape: "CIRCLE",\\n                        borderWidth: 3,\\n                        borderColor: "#ffffff",\\n                        size: {\\n                            defaultValue: 25,\\n                            continuousMapper: { attrName: "weight", minValue: 25, maxValue: 75 }\\n                        },\\n                        color: {\\n                            discreteMapper: {\\n                                attrName: "id",\\n                                entries: [\\n                                    { attrValue: 1, value: "#0B94B1" },\\n                                    { attrValue: 2, value: "#9A0B0B" },\\n                                    { attrValue: 3, value: "#dddd00" }\\n                                ]\\n                            }\\n                        },\\n                        labelHorizontalAnchor: "center"\\n                    },\\n                    edges: {\\n                        width: 3,\\n                        color: "#0B94B1"\\n                    }\\n                };\\n\\n                // initialization options\\n                var options = {\\n                    swfPath: "\', escape=False)\nresponse.write(URL(\'static\',\'/swf/CytoscapeWeb\'))\nresponse.write(\'",\\n                    flashInstallerPath: "\', escape=False)\nresponse.write(URL(\'static\',\'/swf/playerProductInstall\'))\nresponse.write(\'"\\n                };\\n\\n                var vis = new org.cytoscapeweb.Visualization(div_id, options);\\n\\n                vis.ready(function() {\\n                    // set the style programmatically\\n                    document.getElementById("color").onclick = function(){\\n                        visual_style.global.backgroundColor = rand_color();\\n                        vis.visualStyle(visual_style);\\n                    };\\n                });\\n\\n                var draw_options = {\\n\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t// your data goes here\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t/*$.ajax({\\n            type: "GET",\\n            url: "data.json",\\n            dataType: "json",\\n                        error: function(){\\n                alert("Error loading file");\\n            },\\nsuccess: function(data){\\n}\\n});\\nvar netwdata = data.elements[0];\\nvis.draw({ network: netwdata });*/\\n\\n                    network: xml,\\n\\n                    // show edge labels too\\n                    edgeLabelsVisible: true,\\n\\n                    // let\\\'s try another layout\\n                    layout: "Tree",\\n\\n                    // set the style at initialisation\\n                    visualStyle: visual_style,\\n\\n                    // hide pan zoom\\n                    panZoomControlVisible: true\\n                };\\n\\n                vis.draw(draw_options);\\n            };\\n        </script>\\n\\n        <style>\\n            * { margin: 0; padding: 0; font-family: Helvetica, Arial, Verdana, sans-serif; }\\n            html, body { height: 100%; width: 100%; padding: 0; margin: 0; background-color: #f0f0f0; }\\n            body { line-height: 1.5; color: #000000; font-size: 14px; }\\n            /* The Cytoscape Web container must have its dimensions set. */\\n            #cytoscapeweb { width: 100%; height: 80%; }\\n            #note { width: 100%; text-align: center; padding-top: 1em; }\\n            .link { text-decoration: underline; color: #0b94b1; cursor: pointer; }\\n        </style>\\n\\t\\t<!--endof graph content-->\\n\\t</head>\\n\\t<body>\\n<!-- begin template -->\\n<div class="navbar navbar-custom navbar-fixed-top">\\n <div class="navbar-header"><a class="navbar-brand" href="#">Brand</a>\\n      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">\\n        <span class="icon-bar"></span>\\n        <span class="icon-bar"></span>\\n        <span class="icon-bar"></span>\\n      </a>\\n    </div>\\n    <div class="navbar-collapse collapse">\\n      <ul class="nav navbar-nav">\\n        <li class="active"><a href="#">Home</a></li>\\n        <li><a href="#">Link</a></li>\\n        <li><a href="#">Link</a></li>\\n        <li>&nbsp;</li>\\n      </ul>\\n      <form class="navbar-form">\\n        <div class="form-group" style="display:inline;">\\n          <div class="input-group">\\n            <div class="input-group-btn">\\n              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>\\n              <ul class="dropdown-menu">\\n                <li><a href="#">Category 1</a></li>\\n                <li><a href="#">Category 2</a></li>\\n                <li><a href="#">Category 3</a></li>\\n                <li><a href="#">Category 4</a></li>\\n                <li><a href="#">Category 5</a></li>\\n              </ul>\\n            </div>\\n            <input type="text" class="form-control" id="textinput"placeholder="Enter a Keyword" name="inputkeyword">\\n            <button class="btn btn-default" type="submit"  method="post"><span class="glyphicon glyphicon-search"></span> </button>\\n          </div>\\n        </div>\\n      </form>\\n    </div>\\n</div>\\n\\n<div id="map-canvas">\\n\\t<embed src="\', escape=False)\nresponse.write(URL(\'static\',\'/swf/CytoscapeWeb.swf\'))\nresponse.write(\'" width="100%" height="100%" align="middle" id="cytoscapeWeb1" quality="high" bgcolor="#ffffff" name="cytoscapeWeb1" allowscriptaccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" flashvars="id=cytoscapeWeb1" type="application/x-shockwave-flash">\\n</div>\\n<div class="container-fluid" id="main">\\n  <div class="row">\\n  \\t<div class="col-xs-8" id="left">\\n      \', escape=False)\nresponse.write(\'\\n\', escape=False)\nif acticles:\n    response.write(\'\\n<div class="panel panel-default">\\n  <div class="panel-heading"><p>Results for \\\' \', escape=False)\n    response.write(keyword)\n    response.write(" \': (", escape=False)\n    response.write(length)\n    response.write(\' matches found!)</p></div>\\n</div>\\n<hr>\\n<div class="table-responsive">\\n  <table class="table">\\n    <thead>\\n      <tr>\\n        <th>#</th>\\n        <th>Author</th>\\n        <th>Number of Publications</th>\\n\\n      </tr>\\n    </thead>\\n    <tbody>\\n      \', escape=False)\n    for i in range(len(facetList[0])):\n        response.write(\'\\n      <tr>\\n\\n        <td>\', escape=False)\n        response.write(i+1)\n        response.write(\'</td>\\n\\n        <td><a href="author/\', escape=False)\n        response.write(keyword)\n        response.write(\'/\', escape=False)\n        response.write(facetList[0][i])\n        response.write(\'">\', escape=False)\n        response.write(facetList[0][i])\n        response.write(\'<a></td>\\n        <td>\', escape=False)\n        response.write(facetList[1][i])\n        response.write(\'</td>\\n\\n\\n      \', escape=False)\n        pass\n    response.write(\'\\n      </tr>\\n    </tbody>\\n  </table>\\n  </div>\\n</div>\\n\', escape=False)\n    response.write(\'\\n\\t\\t</div>\\n  </div>\\n</div>\\n<!-- end template -->\\n\\n\\t<!-- script references -->\\n\\t\\t<script type="text/javascript" src="\', escape=False)\n    response.write(URL(\'static\',\'/js/json2.min.js\'))\n    response.write(\'"></script>\\n\\t\\t<script type="text/javascript" src="\', escape=False)\n    response.write(URL(\'static\',\'/js/AC_OETags.min.js\'))\n    response.write(\'"></script>\\n\\t\\t<script type="text/javascript" src="\', escape=False)\n    response.write(URL(\'static\',\'/js/cytoscapeweb.min.js\'))\n    response.write(\'"></script>\\n\\t\\t<script src="\', escape=False)\n    response.write(URL(\'static\',\'/js/jquery.min.js\'))\n    response.write(\'" type="text/javascript"></script>\\n\\t\\t<script src="\', escape=False)\n    response.write(URL(\'static\',\'/js/bootstrap.min.js\'))\n    response.write(\'" type="text/javascript"></script>\\n\\t\\t<!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>-->\\n\\t\\t<script src="\', escape=False)\n    response.write(URL(\'static\',\'/js/scripts.js\'))\n    response.write(\'" type="text/javascript"></script>\\n\\t</body>\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'gluon.rocket'"
+p13
+sS'__getslice__'
+p14
+S"<method-wrapper '__getslice__' of SocketTimeout object>"
+p15
+sS'__str__'
+p16
+S"<method-wrapper '__str__' of SocketTimeout object>"
+p17
+sS'__reduce__'
+p18
+S'<built-in method __reduce__ of SocketTimeout object>'
+p19
+sS'__dict__'
+p20
+S'{}'
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of SocketTimeout object>'
+p23
+sS'__weakref__'
+p24
+S'None'
+p25
+sS'__init__'
+p26
+S"<method-wrapper '__init__' of SocketTimeout object>"
+p27
+sS'__setattr__'
+p28
+S"<method-wrapper '__setattr__' of SocketTimeout object>"
+p29
+sS'__reduce_ex__'
+p30
+S'<built-in method __reduce_ex__ of SocketTimeout object>'
+p31
+sS'__new__'
+p32
+S'<built-in method __new__ of type object>'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of SocketTimeout object>'
+p35
+sS'__class__'
+p36
+S"<class 'gluon.rocket.SocketTimeout'>"
+p37
+sS'__doc__'
+p38
+S"'Exception for when a socket times out between requests.'"
+p39
+sS'__getitem__'
+p40
+S"<method-wrapper '__getitem__' of SocketTimeout object>"
+p41
+sS'__setstate__'
+p42
+S'<built-in method __setstate__ of SocketTimeout object>'
+p43
+sS'__getattribute__'
+p44
+S"<method-wrapper '__getattribute__' of SocketTimeout object>"
+p45
+sS'args'
+p46
+S"('Socket timed out before request.',)"
+p47
+sS'__subclasshook__'
+p48
+S'<built-in method __subclasshook__ of type object>'
+p49
+sS'__unicode__'
+p50
+S'<built-in method __unicode__ of SocketTimeout object>'
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of SocketTimeout object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of SocketTimeout object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of SocketTimeout object>"
+p57
+ssS'evalue'
+p58
+S'Socket timed out before request.'
+p59
+sS'frames'
+p60
+(lp61
+(dp62
+S'file'
+p63
+S'/home/damla/web2py/gluon/rocket.py'
+p64
+sS'dump'
+p65
+(dp66
+S'self'
+p67
+S'<WSGIWorker(Thread-8, started daemon 139621286090496)>'
+p68
+sS'conn'
+p69
+S'<gluon.rocket.Connection object>'
+p70
+sS'self.run_app'
+p71
+S'<bound method WSGIWorker.run_app of <WSGIWorker(Thread-8, started daemon 139621286090496)>>'
+p72
+ssS'lnum'
+p73
+I1337
+sS'lines'
+p74
+(dp75
+I1332
+S'            # Enter connection serve loop'
+p76
+sI1333
+S'            while True:'
+p77
+sI1334
+S'                if __debug__:'
+p78
+sI1335
+S"                    self.err_log.debug('Serving a request')"
+p79
+sI1336
+S'                try:'
+p80
+sI1337
+S'                    self.run_app(conn)'
+p81
+sI1338
+S'                except:'
+p82
+sI1339
+S'                    exc = sys.exc_info()'
+p83
+sI1340
+S'                    handled = self._handleError(*exc)'
+p84
+sI1341
+S'                    if handled:'
+p85
+ssS'call'
+p86
+S'(self=<WSGIWorker(Thread-8, started daemon 139621286090496)>)'
+p87
+sS'func'
+p88
+S'run'
+p89
+sa(dp90
+g63
+S'/home/damla/web2py/gluon/rocket.py'
+p91
+sg65
+(dp92
+S'self'
+p93
+S'<WSGIWorker(Thread-8, started daemon 139621286090496)>'
+p94
+sS'self.environ'
+p95
+S"{'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch', 'HTTP_ACCEPT_LANGUAGE': 'tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4', 'HTTP_CACHE_CONTROL': 'max-age=0', 'HTTP_CONNECTION': 'keep-alive', 'HTTP_COOKIE': '_ga=GA1.1.1065602752.1463081039; session_id_welc...ew=127.0.0.1-87485ba4-e6ba-4433-a245-8497bc53617e', 'HTTP_HOST': '127.0.0.1:8000', 'HTTP_UPGRADE_INSECURE_REQUESTS': '1', 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537....L, like Gecko) Chrome/51.0.2704.103 Safari/537.36', 'PATH_INFO': '/webofsciencenew/default/index', ...}"
+p96
+sS'sock_file'
+p97
+S'<socket._fileobject object>'
+p98
+sS'environ'
+p99
+S'undefined'
+p100
+sS'self.build_environ'
+p101
+S'<bound method WSGIWorker.build_environ of <WSGIWorker(Thread-8, started daemon 139621286090496)>>'
+p102
+sS'conn'
+p103
+S'<gluon.rocket.Connection object>'
+p104
+ssg73
+I1830
+sg74
+(dp105
+I1825
+S'        else:'
+p106
+sI1826
+S'            sock_file = conn.makefile(BUF_SIZE)'
+p107
+sI1827
+S''
+sI1828
+S'        try:'
+p108
+sI1829
+S'            # Read the headers and build our WSGI environment'
+p109
+sI1830
+S'            self.environ = environ = self.build_environ(sock_file, conn)'
+p110
+sI1831
+S''
+sI1832
+S'            # Handle 100 Continue'
+p111
+sI1833
+S"            if environ.get('HTTP_EXPECT', '') == '100-continue':"
+p112
+sI1834
+S"                res = environ['SERVER_PROTOCOL'] + ' 100 Continue\\r\\n\\r\\n'"
+p113
+ssg86
+S'(self=<WSGIWorker(Thread-8, started daemon 139621286090496)>, conn=<gluon.rocket.Connection object>)'
+p114
+sg88
+S'run_app'
+p115
+sa(dp116
+g63
+S'/home/damla/web2py/gluon/rocket.py'
+p117
+sg65
+(dp118
+S'sock_file'
+p119
+S'<socket._fileobject object>'
+p120
+sS'self.read_request_line'
+p121
+S'<bound method WSGIWorker.read_request_line of <W...orker(Thread-8, started daemon 139621286090496)>>'
+p122
+sS'self'
+p123
+S'<WSGIWorker(Thread-8, started daemon 139621286090496)>'
+p124
+sS'request'
+p125
+g100
+ssg73
+I1650
+sg74
+(dp126
+I1645
+S'                                      "wsgiorg.futures": executor.futures})'
+p127
+sI1646
+S''
+sI1647
+S'    def build_environ(self, sock_file, conn):'
+p128
+sI1648
+S'        """ Build the execution environment. """'
+p129
+sI1649
+S'        # Grab the request line'
+p130
+sI1650
+S'        request = self.read_request_line(sock_file)'
+p131
+sI1651
+S''
+sI1652
+S'        # Copy the Base Environment'
+p132
+sI1653
+S'        environ = self.base_environ.copy()'
+p133
+sI1654
+S''
+ssg86
+S'(self=<WSGIWorker(Thread-8, started daemon 139621286090496)>, sock_file=<socket._fileobject object>, conn=<gluon.rocket.Connection object>)'
+p134
+sg88
+S'build_environ'
+p135
+sa(dp136
+g63
+S'/home/damla/web2py/gluon/rocket.py'
+p137
+sg65
+(dp138
+S'global SocketTimeout'
+p139
+S"<class 'gluon.rocket.SocketTimeout'>"
+p140
+ssg73
+I1401
+sg74
+(dp141
+I1396
+S''
+sI1397
+S'                d = sock_file.readline()'
+p142
+sI1398
+S'                if PY3K:'
+p143
+sI1399
+S"                    d = d.decode('ISO-8859-1')"
+p144
+sI1400
+S'        except socket.timeout:'
+p145
+sI1401
+S"            raise SocketTimeout('Socket timed out before request.')"
+p146
+sI1402
+S'        except TypeError:'
+p147
+sI1403
+S'            raise SocketClosed('
+p148
+sI1404
+S"                'SSL bug caused closure of socket.  See '"
+p149
+sI1405
+S'                \'"https://groups.google.com/d/topic/web2py/P_Gw0JxWzCs".\')'
+p150
+ssg86
+S'(self=<WSGIWorker(Thread-8, started daemon 139621286090496)>, sock_file=<socket._fileobject object>)'
+p151
+sg88
+S'read_request_line'
+p152
+sasS'pyver'
+p153
+S'Python 2.7.6: /usr/bin/python (prefix: /usr)'
+p154
+sS'etype'
+p155
+S"<class 'gluon.rocket.SocketTimeout'>"
+p156
+sS'date'
+p157
+S'Thu Jun 30 13:11:46 2016'
+p158
+sS'locals'
+p159
+(dp160
+S'sock_file'
+p161
+S'<socket._fileobject object>'
+p162
+sS'self'
+p163
+S'<WSGIWorker(Thread-8, started daemon 139621286090496)>'
+p164
+sssS'traceback'
+p165
+S'Traceback (most recent call last):\n  File "/home/damla/web2py/gluon/rocket.py", line 1337, in run\n    self.run_app(conn)\n  File "/home/damla/web2py/gluon/rocket.py", line 1830, in run_app\n    self.environ = environ = self.build_environ(sock_file, conn)\n  File "/home/damla/web2py/gluon/rocket.py", line 1650, in build_environ\n    request = self.read_request_line(sock_file)\n  File "/home/damla/web2py/gluon/rocket.py", line 1401, in read_request_line\n    raise SocketTimeout(\'Socket timed out before request.\')\nSocketTimeout: Socket timed out before request.\n'
+p166
+s.

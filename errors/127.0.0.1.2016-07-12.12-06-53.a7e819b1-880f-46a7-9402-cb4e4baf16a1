@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> global name 'allitems' is not defined"
+p3
+sS'layer'
+p4
+S'/home/damla/web2py/applications/webofsciencenew/controllers/default.py'
+p5
+sS'code'
+p6
+S'from urllib2 import *\nimport urllib\nimport math\n\ndef index():\n\n    session.keyword = str(request.vars.inputkeyword)\n    f = { \'q\' : session.keyword}\n\n    connection = urlopen(\'http://localhost:8983/solr/webofscienceindex/select?\'+urllib.urlencode(f)+\'&rows=20000&wt=json&indent=true&facet=true&facet.field=authors&facet.mincount=1&facet.limit=20000\')\n    response = eval(connection.read())\n\n\n    facet = response[\'facet_counts\'][\'facet_fields\']\n    print facet[\'authors\']\n    authorArticles =[]\n    totalArticles = []\n    facetList =[]\n    for f in facet[\'authors\']:\n        if(facet[\'authors\'].index(f) %2 == 0):\n            authorArticles.append(f)\n        else:\n            totalArticles.append(f)\n    facetList.append(authorArticles)\n    facetList.append(totalArticles)\n    length = len(facetList[0])\n    T = length\n    P = request.vars.page # e.g. http://blah.com/show_items?page=0\n    I = request.vars.ipp # e.g. http://blah.com/show_items?page=0&ipp=50\n    num_pages = math.ceil(10) # ceil(100/10) = 10 pages\n    cur_page = P # 0\n\n    start = 10*1 # 10 * 0 = 0\n    end = start + 10 # 0 + 10 = 10\n    if end > T: # false\n      end = T\n\n    items = allitems[start:end] # this page\'s items\n    return dict(keyword =session.keyword, facetList=facetList, length = length, data=items,\n      start=start,\n      end=end,\n      total=T,\n      prev=page-1 if page > 0 else None,\n      next=page+1 if page < num_pages else None)\n\ndef author():\n\n    keyword2 = session.keyword\n\n    authorrequest = request.args[1]\n    authorname = authorrequest.replace(\'__\', \', \')\n    athname = session.authorname\n    cot = ("\\"","\\"")\n    authorname = authorname.join(cot)\n\n    f = { \'q\' : keyword2, \'fq\' : "authors:"+authorname}\n    urlname = urllib.urlencode(f)\n    connection = urlopen(\'http://localhost:8983/solr/webofscienceindex/select?\'+urllib.urlencode(f)+\'&rows=200000&wt=json&indent=true&facet=true&facet.field=authors&facet.mincount=1\')\n    response = eval(connection.read())\n    matches = response[\'response\'][\'numFound\']\n    articles = response[\'response\'][\'docs\']\n    #articles = sorted(articles, key=lambda k: k [\'published\'][0], reverse= True)\n    articlesList = []\n    puclisheddates = []\n    for a in articles:\n        article = {}\n        #p = a[\'published\'][0]\n        #new[\'published\'] = p\n        #article[\'authors\'] = a[0][0]\n        article[\'title\'] = a[\'title\'][0]\n        #article[\'abstract\'] = a[2][0]\n        #article[\'keywords\'] = a[\'keywords\'][0]\n        #article[\'address\'] = a[\'revisedAddress\'][0]\n        #dates.append(d)\n        articlesList.append(article)\n    #dates = list(set(dates)) # coklu degerleri uniqe yapar\n    length = len(articlesList[0])\n    return dict(articlesList = articlesList, articles=articles, keyword =keyword2, matches=matches,urlname=urlname,authorname=authorname,length=length, athname=athname)\n\nresponse._vars=response._caller(index)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/damla/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/damla/web2py/applications/webofsciencenew/controllers/default.py", line 80, in <module>\n  File "/home/damla/web2py/gluon/globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/damla/web2py/applications/webofsciencenew/controllers/default.py", line 38, in index\n    items = allitems[start:end] # this page\'s items\nNameError: global name \'allitems\' is not defined\n'
+p11
+s.

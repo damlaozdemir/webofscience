@@ -1,0 +1,109 @@
+{{extend 'layout.html'}}
+
+{{import math}}
+{{from gluon.serializers import json}}
+{{import urllib}}
+
+{{if keyword:}}
+<div id= "pageStuff">
+<div class="panel panel-default">
+  <div class="panel-heading"><p>Results for ' <b id="keyword">{{=keyword}}</b> ': ({{=length}} matches found!)</p></div>
+</div>
+<hr>
+<div class="table-responsive" >
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Author</th>
+        <th>Number of Publications</th>
+
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      {{i=0}}
+      
+      {{while(i < len(facetList[0])) and (facetoffset <= rows):}}
+      <tr class="success">
+        
+        <td>{{=facetoffset+1}}</td>
+        {{facetoffset = facetoffset+1}}
+        
+        <td id="author" ><a href="/webofsciencecola/default/author?{{=urllib.urlencode(f2)}}&author={{=facetList[0][i]}}">{{=facetList[0][i]}}</a>
+          
+          </td>
+        <td id="publications">{{=facetList[1][i]}}</td>
+        {{i=i+1}}
+      </tr>
+      {{pass}}
+    </tbody>
+  </table>
+</div>
+{{pass}}
+</div>
+<!-- Paginator -->
+<nav>
+  <ul class="pagination">
+    <li class="page-item" id="previous">
+      <a class="page-link" id="previouslink" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only" id ="previous">Previous</span>
+      </a>
+    </li>
+    
+    {{for i in range(5):}}
+    <li class="page-item"><a class="page-link" href="/webofsciencecola?{{=urllib.urlencode(f2)}}&page={{=i+1}}">{{=i+1}}</a></li>
+    
+    {{pass}}
+
+    <li class="page-item" id="next">
+      <a class="page-link" id="nextlink" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only" >Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+{{page = json(page)}}
+{{mydict = json(mydict)}}
+{{keyword = json(keyword)}}
+<script type="text/javascript">
+
+myhash = {{=XML(mydict)}}
+
+</script>
+<!-- End of Paginator -->
+<!--<div class="pagination">
+        <ul class="pager" id="myPager"></ul>
+      </div>-->
+<script type="text/javascript">
+var page = {{=XML(page)}}
+var keyword = {{=XML(keyword)}}
+
+$('#next').click(function(){
+  var a = document.getElementById('nextlink'); 
+  a.href = "/webofsciencecola?{{=urllib.urlencode(f2)}}&page="+(page+1);
+});
+if(page==1){
+  $('#previous').addClass('disabled');
+}
+
+$('#previous').click(function(){
+  var a = document.getElementById('previouslink'); 
+  if(page>1){
+    a.href = "/webofsciencecola?{{=urllib.urlencode(f2)}}&page="+(page-1);
+  }
+    
+  
+});
+$('.pagination').find('li').click(function(){
+  //$('.pagination').children().removeClass("active");
+  $(this).addClass("active");
+    
+});
+</script>
+ 
+    <script src="{{=URL('static','/js/wholegraph.js')}}" type="text/javascript"></script>
+<!--<script src="{{=URL('static','/js/draw_graph.js')}}" type="text/javascript"></script>
+
+<!--<script src="{{=URL('static','/js/paginator.js')}}" type="text/javascript"></script>-->
